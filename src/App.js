@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import Note from './components/Note/index.jsx';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+
 import './App.css';
 
 function App() {
@@ -47,15 +50,34 @@ function App() {
 
           <input type="text" name="title" value={note.title} onChange={handleInputChange} placeholder='Title' />
           <input type="text" name="description" value={note.description} onChange={handleInputChange} placeholder='Description' />
-          <button onClick={saveNote}>ADD NOTE</button>
+          <button id="inf" onClick={saveNote}>ADD NOTE</button>
 
           {notes.map((item, index) => (
             //<Note title:/>
-            < div key={index} >
-              <p>{item.title}</p>
-              <p>{item.description}</p>
-              <button onClick={() => deleteNote(index)}>Delete</button>
-            </div>
+             
+            //   <p>{item.title}</p>
+            //   <p>{item.description}</p>
+            //   <button onClick={() => deleteNote(index)}>Delete</button>
+            // </div>
+            <Table striped bordered hover id="tab">
+            < div key={index} ></div>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>State</th>
+                <th>#</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{item.title}</td>
+                <td>{item.description}</td>
+                <td>Otto</td>
+                <td><button id="de" onClick={() => deleteNote(index)} variant="Danger">Delete</button></td>
+              </tr>
+            </tbody>
+          </Table>
           ))}
 
         </header>

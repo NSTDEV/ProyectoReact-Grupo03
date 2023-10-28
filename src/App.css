@@ -13,8 +13,19 @@
   }
 }
 
+#de{
+  background-color: crimson;
+}
+
+#inf{
+  background-color: lime;
+}
+
+#tab{
+  background-color:darkslategrey;
+}
 .App-header {
-  background-color: #282c34;
+  background-color: #104160;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
