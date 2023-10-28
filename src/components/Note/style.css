@@ -1,0 +1,35 @@
+.container {
+    width: 300px;
+    height: inherit;
+    margin: 1rem;
+    padding: 1rem;
+    background-color: rgba(0, 0, 255, 0.3);
+    color: #FFFBEB;
+    border: 10px solid transparent;
+    border-radius: 10px;
+    transition: ease .3s;
+}
+
+.title {
+    font-size: 1.5rem;
+}
+
+.active-note {
+    border: 3px solid yellow;
+    scale: 1.05;
+    border-radius: 10px;
+}
+
+.inactive-note {
+    border: 3px solid #FFFBEB;
+}
+
+.noteButtonsContainer {
+    display: flex;
+    margin-top: 2rem;
+    justify-content: space-between;
+}
+
+.noteButtonsContainer button {
+    background-color: purple;
+}
