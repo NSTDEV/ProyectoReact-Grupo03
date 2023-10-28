@@ -1,8 +1,5 @@
 import { useState } from 'react';
 import Note from './components/Note/index.jsx';
-import Table from 'react-bootstrap/Table';
-import Button from 'react-bootstrap/Button';
-
 import './App.css';
 
 function App() {
