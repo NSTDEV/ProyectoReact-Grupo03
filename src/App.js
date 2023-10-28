@@ -58,9 +58,9 @@ function App() {
       <h1 className="app-title">Space Pad</h1>
 
       <header className="App-header">
-        <div className='noteCreatorContainer'>
-          <section className='noteInputsContainer'>
-            <h2>ADD A NOTE</h2>
+        <div className='note-creator-container'>
+          <section className='note-inputs-container'>
+            <h2 className='subtitle'>ADD A NOTE</h2>
 
             <input type="text" className="input" name="title" value={note.title} onChange={handleInputChange} placeholder='Title' />
             <input type="text" className="input" name="description" value={note.description} onChange={handleInputChange} placeholder='Description' />
@@ -71,10 +71,10 @@ function App() {
                 </option>
               ))}
             </select>
-            <button className="addNoteButton" onClick={saveNote}>ADD NOTE</button>
+            <button className="add-note-button" onClick={saveNote}>ADD NOTE</button>
           </section>
 
-          <section className='buttonsContainer'>
+          <section className='buttons-container'>
             <button onClick={() => setFilter('active')}>Show Active</button>
             <button onClick={() => setFilter('inactive')}>Show Inactive</button>
             <button onClick={() => setFilter('all')}>Show All</button>
@@ -82,7 +82,7 @@ function App() {
         </div>
       </header>
 
-      <div className="notesContainer">
+      <div className="notes-container">
         {filteredNotes.map((item, index) => (
           <Note key={index} title={item.title} description={item.description} importance={item.importance} active={item.active}
             onToggleActive={() => markNoteAsInactive(index)}
