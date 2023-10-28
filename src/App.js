@@ -1,30 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Note from './components/Note/index.jsx';
 import './App.css';
 
 function App() {
-  const noteObj = { title: '', description: '', importance: '' };
+  const noteObj = { title: '', description: '', importance: 'low', active: true };
+  const importanceOptions = ['low', 'medium', 'high', 'urgent'];
 
   const [note, setNote] = useState(noteObj);
   const [notes, setNotes] = useState([]);
-
-  //Effect to add notes array in local storage.
-  useEffect(() => {
-    localStorage.setItem('notes', JSON.stringify(notes));
-  }, [notes]);
+  const [filter, setFilter] = useState('all');
 
   //Save a note with the title and description and put it in notes array.
   const saveNote = () => {
     if (note.title.trim() !== '' && note.description.trim() !== '') {
       setNotes([...notes, note]);
-      setNote({ title: '', description: '', importance: '' });
-
-      if (note.importance.trim() == '') {
-        setNote({title: '', description: '', importance: ''});
-      }
+      setNote({ title: '', description: '', importance: 'low' });
     } else {
       alert('Please, complete the fields.');
-    };
+    }
   };
 
   //Delete the note splicing the array.
@@ -34,33 +27,67 @@ function App() {
     setNotes(newNotes);
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNote({ ...note, [name]: value });
+  //Make an action that active or unactive notes.
+  const markNoteAsInactive = (index) => {
+    const updatedNotes = [...notes];
+    updatedNotes[index].active = !updatedNotes[index].active;
+    setNotes(updatedNotes);
   };
 
+  //Input changer
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNote({ ...note, [name]: name === 'importance' ? value : value });
+  };
+
+  //Filter to see active or inactive notes
+  const filteredNotes = notes.filter((item) => {
+    if (filter === 'active') {
+      return item.active;
+    } else if (filter === 'inactive') {
+      return !item.active;
+    }
+    return true;
+  });
+
   return (
-    <>
-      <div className="App">
-        <header className="App-header">
-          <h1>Space Pad</h1>
+    <div className="App">
+      <h1 className="app-title">Space Pad</h1>
 
-          <input type="text" name="title" value={note.title} onChange={handleInputChange} placeholder='Title' />
-          <input type="text" name="description" value={note.description} onChange={handleInputChange} placeholder='Description' />
-          <button onClick={saveNote}>ADD NOTE</button>
+      <header className="App-header">
+        <div className='noteCreatorContainer'>
+          <section className='noteInputsContainer'>
+            <h2>ADD A NOTE</h2>
 
-          {notes.map((item, index) => (
-            //<Note title:/>
-            < div key={index} >
-              <p>{item.title}</p>
-              <p>{item.description}</p>
-              <button onClick={() => deleteNote(index)}>Delete</button>
-            </div>
-          ))}
+            <input type="text" className="input" name="title" value={note.title} onChange={handleInputChange} placeholder='Title' />
+            <input type="text" className="input" name="description" value={note.description} onChange={handleInputChange} placeholder='Description' />
+            <select name="importance" className="input" value={note.importance} onChange={handleInputChange}>
+              {importanceOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+            <button className="addNoteButton" onClick={saveNote}>ADD NOTE</button>
+          </section>
 
-        </header>
-      </div >
-    </>
+          <section className='buttonsContainer'>
+            <button onClick={() => setFilter('active')}>Show Active</button>
+            <button onClick={() => setFilter('inactive')}>Show Inactive</button>
+            <button onClick={() => setFilter('all')}>Show All</button>
+          </section>
+        </div>
+      </header>
+
+      <div className="notesContainer">
+        {filteredNotes.map((item, index) => (
+          <Note key={index} title={item.title} description={item.description} importance={item.importance} active={item.active}
+            onToggleActive={() => markNoteAsInactive(index)}
+            onDelete={() => deleteNote(index)}
+          />
+        ))}
+      </div>
+    </div>
   );
 };
 

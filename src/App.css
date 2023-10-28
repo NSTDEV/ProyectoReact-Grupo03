@@ -1,38 +1,51 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.app-title {
+  position: absolute;
+  font-size: 3rem;
+  color: white;
+  top: 1.5rem;
+  left: 2rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.input {
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  padding: .5rem;
+  margin: .5rem;
+  text-transform: uppercase;
+}
+
+.noteCreatorContainer {
+  width: 50%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 3rem;
+  margin-inline: auto;
+  padding-top: 8rem;
+}
+
+.notesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  margin-inline: auto;
+  justify-content: center;
+}
+
+.noteInputsContainer {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: column;
+  width: max-content;
 }
