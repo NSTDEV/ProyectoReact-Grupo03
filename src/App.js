@@ -1,15 +1,12 @@
 import { useEffect, useState } from 'react';
+import Note from './components/Note/index.jsx';
 import './App.css';
 
 function App() {
-  const [note, setNote] = useState({ title: '', description: '' });
-  const [notes, setNotes] = useState([]);
+  const noteObj = { title: '', description: '', importance: '' };
 
-  //Effect to return local array created previously.
-  useEffect(() => {
-    const storedNotes = JSON.parse(localStorage.getItem('notes') || '[]');
-    setNotes(storedNotes);
-  }, []);
+  const [note, setNote] = useState(noteObj);
+  const [notes, setNotes] = useState([]);
 
   //Effect to add notes array in local storage.
   useEffect(() => {
@@ -20,7 +17,11 @@ function App() {
   const saveNote = () => {
     if (note.title.trim() !== '' && note.description.trim() !== '') {
       setNotes([...notes, note]);
-      setNote({ title: '', description: '' });
+      setNote({ title: '', description: '', importance: '' });
+
+      if (note.importance.trim() == '') {
+        setNote({title: '', description: '', importance: ''});
+      }
     } else {
       alert('Please, complete the fields.');
     };
@@ -49,7 +50,8 @@ function App() {
           <button onClick={saveNote}>ADD NOTE</button>
 
           {notes.map((item, index) => (
-            <div key={index}>
+            //<Note title:/>
+            < div key={index} >
               <p>{item.title}</p>
               <p>{item.description}</p>
               <button onClick={() => deleteNote(index)}>Delete</button>
@@ -57,7 +59,7 @@ function App() {
           ))}
 
         </header>
-      </div>
+      </div >
     </>
   );
 };
