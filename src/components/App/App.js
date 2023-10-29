@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Note from './components/Note/index.jsx';
+import Note from '../Note/index.jsx';
 import './App.css';
 
 function App() {
