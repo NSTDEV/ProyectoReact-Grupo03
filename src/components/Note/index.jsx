@@ -6,7 +6,7 @@ function Note({ title, description, importance, active, onToggleActive, onDelete
             <div className='text-container'>
                 <h3 className='title'>{title}</h3>
                 <p className='description'>{description}</p>
-                <p className='importance'>PRIORITY: {importance}</p>
+                <p className='importance'>PRIORITY: <span>{importance}</span></p>
             </div>
             
             <div className='note-buttons-container'>

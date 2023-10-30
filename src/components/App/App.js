@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Note from '../Note/index.jsx';
-import './App.css';
+import './style.css';
 
 function App() {
   const noteObj = { title: '', description: '', importance: 'low', active: true };
