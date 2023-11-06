@@ -14,7 +14,7 @@ function App() {
   const saveNote = () => {
     if (note.title.trim() !== '' && note.description.trim() !== '') {
       setNotes([...notes, note]);
-      setNote({ title: '', description: '', importance: 'low' });
+      setNote({ title: '', description: '', importance: 'low', active: true });
     } else {
       alert('Please, complete the fields.');
     }
